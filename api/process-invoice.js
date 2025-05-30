@@ -78,7 +78,7 @@ async function createClickUpTask(ocrData, location) {
     };
 
     const response = await axios.post(
-      'https://api.clickup.com/api/v2/list/${locationInfo.listId}/task',
+      `https://api.clickup.com/api/v2/list/${locationInfo.listId}/task`,
       taskData,
       {
         headers: {
@@ -100,6 +100,16 @@ async function createClickUpTask(ocrData, location) {
 
 // Vercel serverless function
 module.exports = async (req, res) => {
+  // Add CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  
+  // Handle OPTIONS request (preflight)
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+  
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }

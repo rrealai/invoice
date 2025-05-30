@@ -1,0 +1,12 @@
+{
+  "orgId": "local",
+  "projectId": "local",
+  "settings": {
+    "framework": null,
+    "devCommand": null,
+    "installCommand": null,
+    "buildCommand": null,
+    "outputDirectory": null,
+    "rootDirectory": null
+  }
+} 
